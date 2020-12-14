@@ -1,0 +1,36 @@
+<div class="data-form">
+    <form class="form-signin" action="/users/create" method="POST">
+      <h2 class="form-signin-heading">Sign Up</h2>
+    <div class="form-group">
+        <label for="inputName" >First Name</label>
+        <input type="text" name="firstName" id="inputName" class="form-control" placeholder="First Name" autofocus>
+    </div>
+    <div class="form-group">
+      <label for="inputName" >Last Name</label>
+      <input type="text" name="lastName" id="inputName" class="form-control" placeholder="Last Name" autofocus>
+  </div>
+  <div class="form-group">
+    <label for="inputName" >User Name</label>
+    <input type="text" name="userName" id="inputName" minlength="5" class="form-control" placeholder="User Name" autofocus>
+</div>
+    <div class="form-group">    
+      <label for="inputEmail">Email address</label>
+      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" minlength="5" class="form-control" placeholder="Password" required>
+      </div>
+    <% if (locals.currentUser) { %>
+        <% if (currentUser.isAdmin) { %>
+            <input id="chat-user-id" name="isAdmin" type="checkbox" value="">
+        <% } %>
+        <% } else { %>
+          <input id="chat-user-id" name="isAdmin" type="hidden" value=false %>">
+    <% } %>
+      <br />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+  </div>
+
+  <p style="padding-top: 3vh;">Already have an account? <a href="/login">Sign in</a></p>

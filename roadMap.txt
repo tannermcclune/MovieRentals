@@ -1,0 +1,4 @@
+-- Authentication 
+
+Registe the user: Post request to /api/users
+Login: Post to /api/logins   (Creating a new login request)

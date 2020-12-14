@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Blockbuster 2.0</title>
+	
+	<link rel="stylesheet" type="text/css" href="/css/mobile.css">
+	<link rel="stylesheet" type="text/css" href="/css/custom-styles.css">
+	<script src="/js/mobile.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="page">
+	<nav class="navbar navbar-inverse navbar-static-top">\
+		<div class="container">
+			<a class="navbar-brand" href="/" style="padding: 10px;">
+				<img src="/images/logo.png" width="40%">
+			  </a>
+			<ul class="nav navbar-nav float-right" style="float: right">
+				<li class="selected">
+					<a href="/">Home</a>
+				</li>
+				<li class="menu">
+					<a href="/rentals">My Rentals</a>
+				</li>
+				<% if (locals.currentUser !== undefined) { %>
+					<% if (currentUser.isAdmin) { %>
+					<li class="menu">
+						<a href="/users">Users</a>
+					</li>
+					<% } %>
+				<% } %>
+
+				<li class="menu">
+					<a href="/movies">Movies</a>
+				</li>
+				<li>
+					<% if (!locals.currentUser) { %>
+						<li>
+							<a href="/login">Log In</a>
+						</li>
+					<% } else { %>
+						<li>
+							<a><%= locals.currentUser.name %></a>
+						</li>
+					<% } %>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="flashes container">
+		<% if (locals.flashMessages) { %>
+		<% if (flashMessages.success) { %>
+		<div class="flash success">
+			<h1 style="color: green"><%= flashMessages.success %></h1>
+		</div>
+			<% } else if (flashMessages.error) { %>
+		<div class="flash error">
+			<h1 style="color: red"><%= flashMessages.error %></h1>
+		</div>
+		<% } %>
+		<% } %>
+	</div>
+		<div class="container"><%- body %></div>
+		
+		<p style="text-align: center; margin: 4vh" class="footer">&copy; 2020 Blockbuster 2.0 All Rights Reserved. Go Aggies!</p>		
+	</body>
+	</html>

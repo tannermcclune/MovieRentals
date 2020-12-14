@@ -1,0 +1,16 @@
+<div>
+<p>This is the rentals page</p>
+<% if (rentals.length === 0) { %>
+    <h1>There are no rentals right now</h1>
+<% } else { %>
+    <table>
+    <% rentals.forEach(rental => { %>
+        <tr>
+            <td>
+                <% rental.movie.title %>
+            </td>
+        </tr>
+    <% }); %>
+    </table>
+<% } %>
+</div>

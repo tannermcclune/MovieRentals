@@ -1,0 +1,17 @@
+<h2>Profile for <%= user.firstname %>, AKA <%= user.username %></h2>
+<ul class="list-group">
+    <li class="list-group-item">Username: <%= user.username %></li>
+    <li class="list-group-item">First Name: <%= user.firstname %></li>
+    <li class="list-group-item">Last Name: <%= user.lastname %></li>
+    <li class="list-group-item">Email: <%= user.email %></li>
+    <li class="list-group-item">Password: <%= user.password %></li>
+    <li class="list-group-item">Data: <%= user %></li>
+</ul>
+
+<p>Something not right? <a href="/users/<%= user._id%>/edit">Edit this user profile</a></p>
+<p><b>Do you dislike this person?</b>
+    <form action="/users/<%= user._id %>/delete" method="POST">
+        <input type="hidden" name="username" value="<%= user.username %>">
+        <input type="submit" class="alert-danger" value="DELETE THEM" onclick="window.confirm('Are you sure you want to delete this user?')">
+    </form>
+</p>

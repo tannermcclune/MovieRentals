@@ -1,0 +1,7 @@
+<%- include('../partials/_movieNav.ejs') %>
+<p>Movies</p>
+<ul class="list-group">
+    <% movies.forEach(movie => { %>
+        <a href="/movies/<%= movie._id %>"<li class="list-group-item"><%= movie.title %></li></a>
+    <% }) %>
+</ul>
