@@ -123,6 +123,7 @@ router.post('/users/login', accountController.userLogin);
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);
+router.get('/admin/transactions', transactionController.getAdminTransactions);
 
 app.use('/', router);
 

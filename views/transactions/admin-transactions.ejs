@@ -1,0 +1,31 @@
+
+    <h1>All Transactions</h1>    
+
+    <table>
+        
+        <thead>
+        <tr>
+
+            <th>Date</th>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Price</th>
+            <th>User Purchased</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    
+        <% transactions.forEach((transaction) => { %>
+            <tr>
+                <td><%= transaction.purchaseDate %></td>
+                <td><%= transaction.movieTitle %></td>
+                <td><%= transaction.movieDirector %></td>
+                <td><%= transaction.moviePrice %></td>
+                <td><%= transaction.userPurchased %></td>
+            </tr>
+    
+        <% }) %>
+       
+    </tbody>
+    </table>
