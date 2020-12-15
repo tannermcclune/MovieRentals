@@ -1,6 +1,7 @@
 const { User, userVlidate } = require('../models/user');
 const stripe = require('stripe')('sk_test_51HwKCmEh7sPHHFlBmTm7SQrKsec0tOPYmFgIpqOu0byDrq5WjcWG1cR2qf8LoARJTdubkEXUIU8IpUlC77L67uKI00XujMmqVS');
 const Transaction = require('../models/transaction');
+const dateFormat = require("dateformat");
 
 const getTransParams = (req, body) => {
     return{
@@ -36,6 +37,19 @@ module.exports = {
       .then(transactions => {
         res.locals.transactions = transactions;
         res.render("transactions/admin-transactions");
+      })
+      .catch(error => {
+        req.flash("error", "Couldn't get transactions");
+        console.log("Can't get transactions!")
+        next(error);
+      });
+    },
+
+    getUserTransactions: (req, res, next) => {
+      Transaction.find({ userPurchased: req.user.username })
+      .then(transactions => {
+        res.locals.transactions = transactions;
+        res.render("transactions/user-transactions", {dateFormat: dateFormat})
       })
       .catch(error => {
         req.flash("error", "Couldn't get transactions");
