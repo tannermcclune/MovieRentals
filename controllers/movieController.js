@@ -138,7 +138,16 @@ module.exports = {
       }
     },
 
-    getCheckout: (req, res, next) => {
-      res.render("movies/checkout")
+    getCheckout: async (req, res, next) => {
+      let id = req.params.id;
+      try{
+        let movie = await Movie.findById(id);
+        res.locals.movie = movie;
+        res.render("movies/checkout")
+      } catch (error) {
+        req.flash("error", "There was an error checking out");
+        res.redirect("/movies")
+      }
+      
     }
   };
