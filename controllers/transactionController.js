@@ -1,9 +1,61 @@
 const { User, userVlidate } = require('../models/user');
 const stripe = require('stripe')('sk_test_51HwKCmEh7sPHHFlBmTm7SQrKsec0tOPYmFgIpqOu0byDrq5WjcWG1cR2qf8LoARJTdubkEXUIU8IpUlC77L67uKI00XujMmqVS');
+const Transaction = require('../models/transaction');
+const dateFormat = require("dateformat");
+
+const getTransParams = (req, body) => {
+    return{
+      movieTitle: body.title,
+      movieDirector: body.director,
+      moviePrice: body.price,
+      userPurchased: req.user.username
+    };
+};
 
 module.exports = {
-    addTransaction: (req, res) => {
-        res.send("it works");
+
+    addTransaction: async (req, res) => {
+      const movieTitle = req.body.title,
+            movieDirector = req.body.director,
+            moviePrice = req.body.price,
+            userPurchased = req.user.username;
+
+      const newTrans = new Transaction({
+          movieTitle,
+          movieDirector,
+          moviePrice,
+          userPurchased
+      });
+
+      Transaction.create(newTrans);
+      console.log(newTrans);
+      res.send("it works");
+    },
+
+    getAdminTransactions: (req, res, next) => {
+      Transaction.find()
+      .then(transactions => {
+        res.locals.transactions = transactions;
+        res.render("transactions/admin-transactions");
+      })
+      .catch(error => {
+        req.flash("error", "Couldn't get transactions");
+        console.log("Can't get transactions!")
+        next(error);
+      });
+    },
+
+    getUserTransactions: (req, res, next) => {
+      Transaction.find({ userPurchased: req.user.username })
+      .then(transactions => {
+        res.locals.transactions = transactions;
+        res.render("transactions/user-transactions", {dateFormat: dateFormat})
+      })
+      .catch(error => {
+        req.flash("error", "Couldn't get transactions");
+        console.log("Can't get transactions!")
+        next(error);
+      });
     },
     
     intiateCheckout: async (req, res) => {
@@ -27,4 +79,5 @@ module.exports = {
           });
           res.json({ id: session.id });
     }
+
 }

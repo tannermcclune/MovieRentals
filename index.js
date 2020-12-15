@@ -162,6 +162,8 @@ router.post("/admin/saveAdmin", adminController.isAdmin, adminController.updateU
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);
+router.get('/admin/transactions', transactionController.getAdminTransactions);
+router.get('/transactions', transactionController.getUserTransactions);
 
 app.use('/', router);
 

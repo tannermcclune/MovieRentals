@@ -18,6 +18,19 @@
     </div>
 
     <div class="form-group">
+      <label for="title">Image Link</label>
+      <input
+        type="text"
+        name="imageUrl"
+        id="imageUrl"
+        class="form-control"
+        placeholder="imageUrl"
+        value="<%=`${baseUrl}${movie.poster_path}`%>"
+        autofocus
+      />
+    </div>
+
+    <div class="form-group">
       <label for="director">Director</label>
       <input
         type="text"

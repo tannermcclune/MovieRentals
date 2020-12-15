@@ -108,9 +108,10 @@ module.exports = {
     const allMovies = res.locals.allMovies;
     const id = req.params.id;
     const movie = allMovies.filter((m) => m.id == id);
-    console.log(movie);
+    // console.log(movie);
     res.render('apiMovies/apiAddStock.ejs', {
       movie: movie[0],
+      baseUrl: baseUrl,
     });
   },
 };

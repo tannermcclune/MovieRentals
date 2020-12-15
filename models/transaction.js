@@ -10,6 +10,10 @@ const transSchema = new Schema(
             default: new Date()
         },
 
+        userPurchased: {
+            type: String
+        },
+
         movieTitle: {
             type: String
         },
@@ -19,7 +23,7 @@ const transSchema = new Schema(
         },
 
         moviePrice: {
-            type: Number
+            type: String
         }
     }
 )

@@ -51,9 +51,10 @@
 							<div class="dropdown-content">
 							  <a href="/users/<%= currentUser._id %>">Profile</a>
 							  <a href="#">My Rentals</a>
+							  <a href="/transactions">Purchase History</a>
 							  <% if (currentUser.isAdmin) { %>
 							  <a href="/admin/users">Edit Users</a>
-							  <a href="">Transactions</a>
+							  <a href="/admin/transactions">Transactions</a>
 							  <% } %>
 							  <a href="/users/logout">Log Out</a>
 						</li>
