@@ -11,11 +11,7 @@ const express = require('express'),
   homeController = require('./controllers/homeController'),
   movieController = require('./controllers/movieController'),
   accountController = require('./controllers/accountController'),
-<<<<<<< HEAD
-  transactionController = require('./controllers/transactionController'),
-=======
   apiMovieController = require('./controllers/apiMovieControllers'),
->>>>>>> dadc6f0264f2d6c9b6493fe3e6b2a102ba6aba05
   PORT = process.env.PORT || 3000,
   passportConfig = require('./config/auth'),
   config = require('config');
