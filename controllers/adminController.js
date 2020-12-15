@@ -1,8 +1,8 @@
-const User = require("../models/user");
+const { User, userVlidate } = require('../models/user');
 
 module.exports = {
     isAdmin: (req, res, next) => {
-        if (currentUser.isAdmin) {
+        if (res.locals.currentUser.isAdmin) {
             next();
         } else {
             req.flash("error", `You are not an administrator.`);
@@ -12,7 +12,7 @@ module.exports = {
 
     getAllUsers: async (req, res, next) => {
         try {
-          let data = await User.find();
+          let data = await User.find({});
           res.locals.users = data;
           res.render('users/allUsers');
         } catch (error) {
@@ -29,4 +29,15 @@ module.exports = {
           res.send(error.message);
         }
       },
+
+      updateUsers: (req, res, next) => {
+        let usersToUpdate = req.body.users;
+        for (us of usersToUpdate) {
+            if (us.isAdmin === 'on') {
+                us.isAdmin = true;
+            } else us.isAdmin = false;
+            User.findByIdAndUpdate(us._id, {isAdmin: us.isAdmin}, {returnOriginal: false}).then(user => {"Users updated successfully"});
+        }
+        res.redirect("/admin/users");
+      }
 }
