@@ -3,7 +3,7 @@ const stripe = require('stripe')('sk_test_51HwKCmEh7sPHHFlBmTm7SQrKsec0tOPYmFgIp
 
 module.exports = {
     addTransaction: (req, res) => {
-
+        res.send("it works");
     },
     
     intiateCheckout: async (req, res) => {
