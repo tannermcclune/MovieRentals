@@ -1,44 +1,42 @@
-"use strict";
+'use strict';
 
-const mongoose = require("mongoose"),
-  { Schema } = require("mongoose");
+const mongoose = require('mongoose'),
+  { Schema } = require('mongoose');
 
-const movieSchema = new Schema(
-  {
-    title: {
-        type: String,
-        required: true,
-        unique: true,
-        max: [100]
-    },
+const movieSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+    unique: true,
+    max: [100],
+  },
 
-    director: {
-        type: String,
-        required: true,
-        max: [50]
-    },
+  director: {
+    type: String,
+    required: true,
+    max: [50],
+  },
 
-    description: {
-        type: String,
-        required: true,
-        max: [500]
-    },
+  description: {
+    type: String,
+    required: true,
+    max: [500],
+  },
 
-    genre: {
-        type: String,
-        required: true,
-        max: [30]
-    },
+  genre: {
+    type: String,
+    required: true,
+    max: [30],
+  },
 
-    runtime: {
-        type: Number,
-        required: true
-    },
-    price: {
-      type: Number,
-      require: true
-    }
-  }
-);
+  runtime: {
+    type: Number,
+    required: true,
+  },
+  price: {
+    type: Number,
+    require: true,
+  },
+});
 
-module.exports = mongoose.model("movie", movieSchema);
+module.exports = mongoose.model('movie', movieSchema);

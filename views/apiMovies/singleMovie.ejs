@@ -8,7 +8,10 @@
   <p>Description: <%= movie.overview %></p>
   <p>Rate: <%= movie.vote_average%></p>
 
-  <a href="/add to stock form" role="button" class="btn btn-warning"
+  <a
+    href="/api/newStockForm/<%= movie.id %>"
+    role="button"
+    class="btn btn-warning"
     >Add to Stock</a
   >
 </div>

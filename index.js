@@ -89,7 +89,7 @@ router.post(
 router.post(
   '/movies/:id/delete',
   movieController.deleteMovie,
-  
+
   movieController.redirect
 );
 router.post('/movies/search', movieController.searchMovies);
@@ -120,6 +120,11 @@ router.get(
   apiMovieController.getApiMovie,
   apiMovieController.getSingleComedy
 );
+router.get(
+  '/api/newStockForm/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getAddForm
+);
 
 // USERS
 router.get('/users/create', accountController.create);
@@ -142,8 +147,16 @@ router.get('/users/:id', accountController.getUser);
 // );
 
 // ADMIN
-router.get('/admin/users', adminController.isAdmin, adminController.getAllUsers);
-router.get('/admin/users/:id', adminController.isAdmin, adminController.getUser);
+router.get(
+  '/admin/users',
+  adminController.isAdmin,
+  adminController.getAllUsers
+);
+router.get(
+  '/admin/users/:id',
+  adminController.isAdmin,
+  adminController.getUser
+);
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);
