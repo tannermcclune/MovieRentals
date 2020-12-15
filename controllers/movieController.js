@@ -136,5 +136,9 @@ module.exports = {
         console.log("ERROR");
         res.send(error);
       }
+    },
+
+    getCheckout: (req, res, next) => {
+      res.render("movies/checkout")
     }
   };

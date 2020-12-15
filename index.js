@@ -119,6 +119,9 @@ router.post('/users/login', accountController.userLogin);
 //   accountController.redirect
 // );
 
+// CHECKOUT ROUTING
+router.get('/movies/:id/checkout', movieController.getCheckout);
+
 app.use('/', router);
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
