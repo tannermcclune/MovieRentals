@@ -7,11 +7,6 @@
         <th>Data</th>
     </tr>
 <% users.forEach(user => {%>
-    <tr>
-        <td><a href="/users/<%= user._id %>"><%= user.username %></a></td>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= user %></td>
-    </tr>
+    <a href="/users/<%= movie._id %>"<li class="list-group-item"><%= user.firstname %> <%= user.lastname %></li></a>
 <% }); %>
 </table>

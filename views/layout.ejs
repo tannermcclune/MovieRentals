@@ -46,8 +46,16 @@
 							<a href="/login">Log In</a>
 						</li>
 					<% } else { %>
-						<li>
-							<a href="/users/logout">Logout</a>
+						<li class="dropdown">
+							<a><%= locals.currentUser.username %></a>
+							<div class="dropdown-content">
+							  <a href="/users/<%= currentUser._id %>">Profile</a>
+							  <a href="#">My Rentals</a>
+							  <% if (currentUser.isAdmin) { %>
+							  <a href="">Edit Users</a>
+							  <a href="">Transactions</a>
+							  <% } %>
+							  <a href="/users/logout">Log Out</a>
 						</li>
 					<% } %>
 			</ul>

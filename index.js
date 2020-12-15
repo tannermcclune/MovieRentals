@@ -11,6 +11,7 @@ const express = require('express'),
   homeController = require('./controllers/homeController'),
   movieController = require('./controllers/movieController'),
   accountController = require('./controllers/accountController'),
+  adminController = require('./controllers/adminController'),
   apiMovieController = require('./controllers/apiMovieControllers'),
   transactionController = require('./controllers/transactionController'),
   PORT = process.env.PORT || 3000,
@@ -46,7 +47,7 @@ router.use(
   expressSession({
     secret: 'blockbuster_secret_code',
     cookie: {
-      maxAge: 300000,
+      maxAge: 3000000,
     },
     resave: false,
     saveUninitialized: false,
@@ -61,7 +62,6 @@ passportConfig(passport);
 router.use((req, res, next) => {
   res.locals.flashMessages = req.flash();
   res.locals.currentUser = req.user;
-  console.log(req.user);
   next();
 });
 
@@ -89,6 +89,7 @@ router.post(
 router.post(
   '/movies/:id/delete',
   movieController.deleteMovie,
+
   movieController.redirect
 );
 router.post('/movies/search', movieController.searchMovies);
@@ -99,15 +100,40 @@ router.get(
   apiMovieController.getApiMovie,
   apiMovieController.getMovie
 );
+router.get(
+  '/api/movies/singleTrendingNow/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleTrending
+);
+router.get(
+  '/api/movies/singleTopRated/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleTopRated
+);
+router.get(
+  '/api/movies/singleAction/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleAction
+);
+router.get(
+  '/api/movies/singleComedy/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleComedy
+);
+router.get(
+  '/api/newStockForm/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getAddForm
+);
 
 // USERS
-router.get('/users', accountController.getAllUsers);
 router.get('/users/create', accountController.create);
 router.get('/users/logout', accountController.userLogout);
 router.post('/users/create', accountController.createNew);
 router.post('/users/login', accountController.userLogin);
 // router.get('/users/all', accountController.getAllUsers);
-// router.get('/users/:id', accountController.getUser);
+router.get('/users/:id', accountController.getUser);
+
 // router.get('/users/:id/edit', accountController.editUser);
 // router.post(
 //   '/users/update',
@@ -120,6 +146,17 @@ router.post('/users/login', accountController.userLogin);
 //   accountController.redirect
 // );
 
+// ADMIN
+router.get(
+  '/admin/users',
+  adminController.isAdmin,
+  adminController.getAllUsers
+);
+router.get(
+  '/admin/users/:id',
+  adminController.isAdmin,
+  adminController.getUser
+);
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);

@@ -1,0 +1,17 @@
+<div style="width: 30%">
+  <img
+    style="margin: auto; height: 40vh"
+    src="<%=`${baseUrl}${movie.poster_path}`%>"
+  />
+
+  <h1><%= movie.title %></h1>
+  <p>Description: <%= movie.overview %></p>
+  <p>Rate: <%= movie.vote_average%></p>
+
+  <a
+    href="/api/newStockForm/<%= movie.id %>"
+    role="button"
+    class="btn btn-warning"
+    >Add to Stock</a
+  >
+</div>

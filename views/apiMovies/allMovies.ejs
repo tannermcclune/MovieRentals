@@ -4,7 +4,7 @@
     <h4 style="color: black">Trending Now</h4>
     <div class="row-posters">
       <% trendingMovies.forEach(movie => { %>
-      <a href="<%=`/movies/singleTrendingNow/${movie.id}`%>">
+      <a href="<%=`/api/movies/singleTrendingNow/${movie.id}`%>">
         <img
           class="row-poster"
           src="<%=`${baseUrl}${movie.poster_path}`%>"
@@ -19,7 +19,7 @@
     <h4 style="color: black">Top Rated</h4>
     <div class="row-posters">
       <% topRatedMovies.forEach(movie => { %>
-      <a href="<%=`/movies/singleTopRated/${movie.id}`%>">
+      <a href="<%=`/api/movies/singleTopRated/${movie.id}`%>">
         <img
           class="row-poster"
           src="<%=`${baseUrl}${movie.poster_path}`%>"
@@ -34,7 +34,7 @@
     <h4 style="color: black">Action</h4>
     <div class="row-posters">
       <% actionMovies.forEach(movie => { %>
-      <a href="<%=`/movies/singleAction/${movie.id}`%>">
+      <a href="<%=`/api/movies/singleAction/${movie.id}`%>">
         <img">
         <img
           class="row-poster"
@@ -50,7 +50,7 @@
     <h4 style="color: black">Comedy</h4>
     <div class="row-posters">
       <% comedyMovies.forEach(movie => { %>
-      <a href="<%=`/movies/singleComedy/${movie.id}`%>">
+      <a href="<%=`/api/movies/singleComedy/${movie.id}`%>">
         <img
           class="row-poster"
           src="<%=`${baseUrl}${movie.poster_path}`%>"

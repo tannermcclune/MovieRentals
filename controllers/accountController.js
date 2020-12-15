@@ -81,11 +81,7 @@ module.exports = {
   redirect: (req, res) => {
     res.redirect(`${res.locals.redirect}`);
   },
-  userLogout: (req, res, next) => {
-    req.logout();
-    req.flash('success', 'Loged out!');
-    res.redirect('/');
-  },
+
   getAllUsers: async (req, res, next) => {
     try {
       let data = await User.find();
@@ -96,12 +92,27 @@ module.exports = {
     }
   },
   getUser: async (req, res, next) => {
-    try {
-      let user = await User.findOne({ _id: req.params.id });
-      res.locals.user = user;
-      res.render('users/singleUser');
-    } catch (error) {
-      res.send(error.message);
+    if (res.locals.currentUser.isAdmin) {
+      try {
+        let user = await User.findOne({ _id: req.params.id });
+        res.locals.user = user;
+        res.render('users/singleUser');
+      } catch (error) {
+        res.send(error.message);
+      }
+    } else {
+      if (!res.locals.currentUser || res.locals.currentUser._id != req.params.id) {
+        req.flash("error", "You cannot access this user's information");
+        res.redirect(`/users/${res.locals.currentUser._id}`);
+      } else {
+        try {
+          let user = await User.findOne({ _id: req.params.id });
+          res.locals.user = user;
+          res.render('users/singleUser');
+        } catch (error) {
+          res.send(error.message);
+        }
+      }
     }
   },
   editUser: async (req, res, next) => {
@@ -132,7 +143,6 @@ module.exports = {
     let id = req.params.id;
     try {
       User.findByIdAndDelete(id).then();
-      console.log(req.params);
       req.flash('success', `${username} deleted forever`);
       res.locals.redirect = '/users/all';
       next();
@@ -142,4 +152,10 @@ module.exports = {
       next();
     }
   },
+  
+  userLogout: (req, res, next) => {
+    req.logout();
+    req.flash("success", "Successfully logged out");
+    res.redirect("/");
+},
 };

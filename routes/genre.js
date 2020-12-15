@@ -32,13 +32,13 @@ router.put('/:id', async(req, res) => {
     const genre = await Genre.findByIdAndUpdate(req.params.id, {name: req.body.name}, {
         new: true
     });
-    if(!genre) return res.send('The genre you are looking for is not exist');
+    if(!genre) return res.send('The genre you are looking for does not exist');
     res.send(genre);
 })
 
 router.delete('/:id', auth, admin, async (req,res) => {
     const genre = await Genre.findByIdAndRemove(req.params.id);
-    if (!genre) return res.status(404).send('The genre you looking for is not find');
+    if (!genre) return res.status(404).send('The genre you looking for was not found');
     res.send(genre);
 });
 

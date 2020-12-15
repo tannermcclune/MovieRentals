@@ -36,6 +36,14 @@ module.exports = {
     res.locals.comedyMovies = comedyMovies;
     res.locals.horrorMovies = horrorMovies;
     res.locals.romanceMovies = romanceMovies;
+    res.locals.allMovies = [
+      ...trendingMovies,
+      ...topRatedMovies,
+      ...actionMovies,
+      ...comedyMovies,
+      ...horrorMovies,
+      ...romanceMovies,
+    ];
     // console.log(res.locals.movies);
     next();
   },
@@ -61,8 +69,47 @@ module.exports = {
     const movies = res.locals.trendingMovies;
     const id = req.params.id;
     const movie = movies.filter((m) => m.id == id);
-    res.render('movies/singleMovie.ejs', {
+    res.render('apiMovies/singleMovie.ejs', {
       baseUrl: baseUrl,
+      movie: movie[0],
+    });
+  },
+
+  getSingleTopRated: (req, res, next) => {
+    const movies = res.locals.topRatedMovies;
+    const id = req.params.id;
+    const movie = movies.filter((m) => m.id == id);
+    res.render('apiMovies/singleMovie.ejs', {
+      baseUrl: baseUrl,
+      movie: movie[0],
+    });
+  },
+
+  getSingleAction: (req, res, next) => {
+    const movies = res.locals.actionMovies;
+    const id = req.params.id;
+    const movie = movies.filter((m) => m.id == id);
+    res.render('apiMovies/singleMovie', {
+      baseUrl: baseUrl,
+      movie: movie[0],
+    });
+  },
+
+  getSingleComedy: (req, res, next) => {
+    const movies = res.locals.comedyMovies;
+    const id = req.params.id;
+    const movie = movies.filter((m) => m.id == id);
+    res.render('apiMovies/singleMovie', {
+      baseUrl: baseUrl,
+      movie: movie[0],
+    });
+  },
+  getAddForm: (req, res, next) => {
+    const allMovies = res.locals.allMovies;
+    const id = req.params.id;
+    const movie = allMovies.filter((m) => m.id == id);
+    console.log(movie);
+    res.render('apiMovies/apiAddStock.ejs', {
       movie: movie[0],
     });
   },
