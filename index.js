@@ -103,6 +103,7 @@ router.post('/movies/search', movieController.searchMovies);
 // USERS
 router.get('/users', accountController.getAllUsers);
 router.get('/users/create', accountController.create);
+router.get('/users/logout', accountController.userLogout);
 router.post('/users/create', accountController.createNew);
 router.post('/users/login', accountController.userLogin);
 // router.get('/users/all', accountController.getAllUsers);
