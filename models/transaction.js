@@ -6,19 +6,22 @@ const mongoose = require("mongoose"),
 const transSchema = new Schema(
     {
         purchaseDate: {
-
+            type: Date,
+            default: new Date()
         },
-        
-        movieTitle: {
 
+        movieTitle: {
+            type: String
         },
 
         movieDirector: {
-
+            type: String
         },
 
         moviePrice: {
-
+            type: Number
         }
     }
 )
+
+module.exports = mongoose.model("transaction", transSchema, "transactions");
