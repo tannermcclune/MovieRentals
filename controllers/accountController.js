@@ -72,14 +72,24 @@ module.exports = {
   },
   userLogin: (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/',
-      successFlash: `Log in successful`,
+      successRedirect: '/movies',
+      successFlash: true,
       failureRedirect: '/login',
       failureFlash: true,
     })(req, res, next);
   },
   redirect: (req, res) => {
     res.redirect(`${res.locals.redirect}`);
+  },
+
+  getAllUsers: async (req, res, next) => {
+    try {
+      let data = await User.find();
+      res.locals.users = data;
+      res.render('users/allUsers');
+    } catch (error) {
+      res.send(error.message);
+    }
   },
   getUser: async (req, res, next) => {
     if (res.locals.currentUser.isAdmin) {
@@ -143,7 +153,7 @@ module.exports = {
     }
   },
   
-  logout: (req, res, next) => {
+  userLogout: (req, res, next) => {
     req.logout();
     req.flash("success", "Successfully logged out");
     res.redirect("/");

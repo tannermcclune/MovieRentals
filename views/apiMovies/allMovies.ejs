@@ -1,0 +1,63 @@
+<%- include('../partials/_movieNav.ejs') %>
+<div class="all">
+  <div class="row">
+    <h4 style="color: black">Trending Now</h4>
+    <div class="row-posters">
+      <% trendingMovies.forEach(movie => { %>
+      <a href="<%=`/api/movies/singleTrendingNow/${movie.id}`%>">
+        <img
+          class="row-poster"
+          src="<%=`${baseUrl}${movie.poster_path}`%>"
+          alt="Not fund"
+        />
+      </a>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4 style="color: black">Top Rated</h4>
+    <div class="row-posters">
+      <% topRatedMovies.forEach(movie => { %>
+      <a href="<%=`/api/movies/singleTopRated/${movie.id}`%>">
+        <img
+          class="row-poster"
+          src="<%=`${baseUrl}${movie.poster_path}`%>"
+          alt="Not fund"
+        />
+      </a>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4 style="color: black">Action</h4>
+    <div class="row-posters">
+      <% actionMovies.forEach(movie => { %>
+      <a href="<%=`/api/movies/singleAction/${movie.id}`%>">
+        <img">
+        <img
+          class="row-poster"
+          src="<%=`${baseUrl}${movie.poster_path}`%>"
+          alt="Not fund"
+        />
+      </a>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4 style="color: black">Comedy</h4>
+    <div class="row-posters">
+      <% comedyMovies.forEach(movie => { %>
+      <a href="<%=`/api/movies/singleComedy/${movie.id}`%>">
+        <img
+          class="row-poster"
+          src="<%=`${baseUrl}${movie.poster_path}`%>"
+          alt="Not fund"
+        />
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</div>

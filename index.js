@@ -12,6 +12,8 @@ const express = require('express'),
   movieController = require('./controllers/movieController'),
   accountController = require('./controllers/accountController'),
   adminController = require('./controllers/adminController'),
+  apiMovieController = require('./controllers/apiMovieControllers'),
+  transactionController = require('./controllers/transactionController'),
   PORT = process.env.PORT || 3000,
   passportConfig = require('./config/auth'),
   config = require('config');
@@ -63,7 +65,6 @@ router.use((req, res, next) => {
   next();
 });
 
-
 // NEW ROUTES
 router.get('/', homeController.index);
 router.get('/login', accountController.login);
@@ -93,12 +94,39 @@ router.post(
 );
 router.post('/movies/search', movieController.searchMovies);
 
+//API MOVIES
+router.get(
+  '/api/showmovie',
+  apiMovieController.getApiMovie,
+  apiMovieController.getMovie
+);
+router.get(
+  '/api/movies/singleTrendingNow/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleTrending
+);
+router.get(
+  '/api/movies/singleTopRated/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleTopRated
+);
+router.get(
+  '/api/movies/singleAction/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleAction
+);
+router.get(
+  '/api/movies/singleComedy/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleComedy
+);
+
 // USERS
 router.get('/users/create', accountController.create);
+router.get('/users/logout', accountController.userLogout);
 router.post('/users/create', accountController.createNew);
 router.post('/users/login', accountController.userLogin);
 // router.get('/users/all', accountController.getAllUsers);
-router.get("/users/logout", accountController.logout);
 router.get('/users/:id', accountController.getUser);
 
 // router.get('/users/:id/edit', accountController.editUser);
@@ -116,6 +144,9 @@ router.get('/users/:id', accountController.getUser);
 // ADMIN
 router.get('/admin/users', adminController.isAdmin, adminController.getAllUsers);
 router.get('/admin/users/:id', adminController.isAdmin, adminController.getUser);
+// CHECKOUT ROUTING
+router.get('/movies/:id/checkout', movieController.getCheckout);
+router.post('/checkout', transactionController.addTransaction);
 
 app.use('/', router);
 

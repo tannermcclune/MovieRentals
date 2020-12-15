@@ -28,7 +28,8 @@
     "mongoose": "^5.11.8",
     "mpath": "^0.7.0",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "stripe": "^8.128.0"
   },
   "devDependencies": {
     "express-ejs-layouts": "^2.5.0"

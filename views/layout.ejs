@@ -26,6 +26,9 @@
 				<li class="menu">
 					<a href="/rentals">My Rentals</a>
 				</li>
+				<li class="menu">
+					<a href="/api/showmovie">API</a>
+				</li>
 				<% if (locals.currentUser !== undefined) { %>
 					<% if (currentUser.isAdmin) { %>
 					<li class="menu">
@@ -72,7 +75,7 @@
 		<% } %>
 		<% } %>
 	</div>
-		<div class="container"><%- body %></div>
+		<div class="container" style="margin: 0; width: 100%;"><%- body %></div>
 		
 		<p style="text-align: center; margin: 4vh" class="footer">&copy; 2020 Blockbuster 2.0 All Rights Reserved. Go Aggies!</p>		
 	</body>

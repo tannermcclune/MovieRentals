@@ -29,3 +29,40 @@
  .dropdown-content a:hover {background-color: #888; color: white; text-decoration: none;}
  .dropdown:hover .dropdown-content {display: block;}
  .dropdown:hover .dropbtn {color: white;}
+ .btn-primary{
+     background-color: #FBB03B !important;
+     border-color: #E29C2F !important;
+ }
+
+ .card{
+     margin: auto;
+     margin-top: 25px;
+     border: 1px #dadada solid;
+     border-radius: 10px;
+     width: 50%;
+     padding: 35px;
+     -webkit-box-shadow: 0px 6px 21px -4px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 6px 21px -4px rgba(0,0,0,0.2);
+    box-shadow: 0px 6px 21px -4px rgba(0,0,0,0.2);
+ }
+
+ .checkoutform{
+    background-color: white !important;
+    border-color: white !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+ }
+
+ .checkoutformposition{
+     position: absolute !important;
+     top: 35% !important;
+ }
+
+ .form-group {
+    margin-bottom: 0px !important;
+}
+
+.bigtxt{
+    font-size: 24px !important;
+    font-weight: bold;
+}
