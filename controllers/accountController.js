@@ -81,6 +81,11 @@ module.exports = {
   redirect: (req, res) => {
     res.redirect(`${res.locals.redirect}`);
   },
+  userLogout: (req, res, next) => {
+    req.logout();
+    req.flash('success', 'Loged out!');
+    res.redirect('/');
+  },
   getAllUsers: async (req, res, next) => {
     try {
       let data = await User.find();
