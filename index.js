@@ -98,6 +98,26 @@ router.get(
   apiMovieController.getApiMovie,
   apiMovieController.getMovie
 );
+router.get(
+  '/api/movies/singleTrendingNow/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleTrending
+);
+router.get(
+  '/api/movies/singleTopRated/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleTopRated
+);
+router.get(
+  '/api/movies/singleAction/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleAction
+);
+router.get(
+  '/api/movies/singleComedy/:id',
+  apiMovieController.getApiMovie,
+  apiMovieController.getSingleComedy
+);
 
 // USERS
 router.get('/users', accountController.getAllUsers);
