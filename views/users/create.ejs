@@ -1,3 +1,4 @@
+<div class="card">
 <div class="data-form">
   <form class="form-signin" action="/users/create" method="POST">
     <h2 class="form-signin-heading">Sign Up</h2>
@@ -74,7 +75,7 @@
     <% if (locals.currentUser) { %> <% if (currentUser.isAdmin) { %>
     <input id="chat-user-id" name="isAdmin" type="checkbox" value="" />
     <% } %> <% } else { %>
-    <input id="chat-user-id" name="isAdmin" type="hidden" value="false" % />">
+    <input id="chat-user-id" name="isAdmin" type="hidden" value="false" % />
     <% } %>
     <br />
     <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -86,3 +87,4 @@
 <p style="padding-top: 3vh">
   Already have an account? <a href="/login">Sign in</a>
 </p>
+</div>
