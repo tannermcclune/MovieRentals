@@ -12,6 +12,7 @@ const express = require('express'),
   movieController = require('./controllers/movieController'),
   accountController = require('./controllers/accountController'),
   apiMovieController = require('./controllers/apiMovieControllers'),
+  transactionController = require('./controllers/transactionController'),
   PORT = process.env.PORT || 3000,
   passportConfig = require('./config/auth'),
   config = require('config');
@@ -141,6 +142,7 @@ router.post('/users/login', accountController.userLogin);
 
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
+router.post('/checkout', transactionController.addTransaction);
 
 app.use('/', router);
 
