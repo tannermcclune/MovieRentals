@@ -11,7 +11,11 @@ const express = require('express'),
   homeController = require('./controllers/homeController'),
   movieController = require('./controllers/movieController'),
   accountController = require('./controllers/accountController'),
+<<<<<<< HEAD
   transactionController = require('./controllers/transactionController'),
+=======
+  apiMovieController = require('./controllers/apiMovieControllers'),
+>>>>>>> dadc6f0264f2d6c9b6493fe3e6b2a102ba6aba05
   PORT = process.env.PORT || 3000,
   passportConfig = require('./config/auth'),
   config = require('config');
@@ -64,15 +68,6 @@ router.use((req, res, next) => {
   next();
 });
 
-// OLD ROUTES
-// router.use("/", index);
-// router.use('/genres', genre);
-// router.use('/members', members);
-// router.use('/movies', movie);
-// router.use('/rentals', rental);
-// router.use('/users', users);
-// router.use('/login', login);
-
 // NEW ROUTES
 router.get('/', homeController.index);
 router.get('/login', accountController.login);
@@ -100,6 +95,13 @@ router.post(
   movieController.redirect
 );
 router.post('/movies/search', movieController.searchMovies);
+
+//API MOVIES
+router.get(
+  '/api/showmovie',
+  apiMovieController.getApiMovie,
+  apiMovieController.getMovie
+);
 
 // USERS
 router.get('/users', accountController.getAllUsers);
