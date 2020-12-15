@@ -17,6 +17,7 @@ const express = require('express'),
     homeController = require('./controllers/homeController'),
     movieController = require('./controllers/movieController'),
     accountController = require('./controllers/accountController'),
+    adminController = require("./controllers/adminController"),
     PORT = process.env.PORT || 3000,
     config = require('config');
     require("dotenv").config();
@@ -96,6 +97,9 @@ router.get("/users/:id", accountController.getUser);
 router.get("/users/:id/edit", accountController.editUser);
 router.post("/users/update", accountController.updateUser, accountController.redirect);
 router.post("/users/:id/delete", accountController.deleteUser, accountController.redirect);
+
+// ADMIN
+router.get("/admin/users", adminController.isAdmin);
 
 
 app.use("/", router);
