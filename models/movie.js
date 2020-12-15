@@ -29,6 +29,10 @@ const movieSchema = new Schema({
     max: [30],
   },
 
+  imageUrl: {
+    type: String,
+  },
+
   runtime: {
     type: Number,
     required: true,
