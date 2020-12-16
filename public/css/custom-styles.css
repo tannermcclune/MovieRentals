@@ -114,3 +114,14 @@
       width: 25%;
       text-align: center;
   }
+
+  .dark-back{
+      background-color: #222;
+      margin: 0;
+      padding: 0;
+  }
+
+  .message{
+      margin-top: 140px;
+      text-align: center;
+  }

@@ -152,7 +152,6 @@ module.exports = {
         try {
           let user = getUserParams(req.body);
           let updatedUser = await User.findByIdAndUpdate(id, user);
-          console.log('updated first');
           req.flash('success', `${updatedUser.username} was updated successfully!`);
           res.redirect(`/users/${res.locals.currentUser._id}`);
         } catch (error) {
@@ -180,18 +179,36 @@ module.exports = {
       }
   },
   deleteUser: async (req, res, next) => {
-    let username = req.body.username;
-    let id = req.params.id;
-    try {
-      User.findByIdAndDelete(id).then();
-      req.flash('success', `${username} deleted forever`);
-      res.locals.redirect = '/users/all';
-      next();
-    } catch (error) {
-      req.flash('error', `${username} could not be deleted`);
-      res.locals.redirect = `/users/${id}`;
-      next();
+    if (res.locals.currentUser && res.locals.currentUser.isAdmin) {
+      try {
+        let user = getUserParams(req.body);
+        let updatedUser = await User.findByIdAndDelete(req.params.id);
+        req.flash('success', `User was deleted successfully!`);
+        res.redirect(`/`);
+      } catch (error) {
+        req.flash("error", "Could not delete user");
+        res.send(error.message);
+      }
+    } else {
+      if (!res.locals.currentUser) {
+        req.flash("error", "Log in to delete a profile");
+        res.redirect(`/login`);
+      } else if (res.locals.currentUser._id != req.params.id) {
+        req.flash("error", "You cannot access this user's information");
+        res.redirect(`/users/${res.locals.currentUser._id}`);
+      } else {
+        try {
+          let user = getUserParams(req.body);
+          let updatedUser = await User.findByIdAndDelete(req.params.id);
+          req.flash('success', `User was deleted successfully!`);
+          res.redirect(`/`);
+        } catch (error) {
+          req.flash("error", "Could not delete user");
+          res.send(error.message);
+        }
+      }
     }
+    
   },
   
   userLogout: (req, res, next) => {

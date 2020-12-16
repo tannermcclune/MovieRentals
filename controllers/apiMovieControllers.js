@@ -1,4 +1,5 @@
 const APIKEY = '2292c0a68349f95400f7059f9a33b936';
+const Movie = require('../models/movie')
 const axios = require('axios');
 const instance = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -114,4 +115,14 @@ module.exports = {
       baseUrl: baseUrl,
     });
   },
+
+  // EXPORT IN STOCK DATABASE
+  getMovieRestAPI: async (req, res) => {
+    try{
+        const movies = await Movie.find()
+        res.json(movies);
+    } catch (err) {
+        res.json( {message:err });
+    }
+},
 };

@@ -126,6 +126,10 @@ router.get(
   apiMovieController.getAddForm
 );
 
+// Link for REST API for movies that are in stock at Blockbuster 2.0
+router.get("/api/export/movies", apiMovieController.getMovieRestAPI);
+
+
 // USERS
 router.get('/users/create', accountController.create);
 router.get('/users/logout', accountController.userLogout);
@@ -136,11 +140,11 @@ router.get('/users/:id', accountController.getUser);
 router.get('/users/:id/edit', accountController.editUser);
 router.post(
   '/users/:id/update', accountController.updateUser);
-// router.post(
-//   '/users/:id/delete',
-//   accountController.deleteUser,
-//   accountController.redirect
-// );
+router.post(
+  '/users/:id/delete',
+  accountController.deleteUser,
+  accountController.redirect
+);
 
 // ADMIN
 router.get(
@@ -162,6 +166,7 @@ router.get('/admin/transactions', transactionController.getAdminTransactions);
 router.get('/transactions', transactionController.getUserTransactions);
 router.get('/rentals', transactionController.getRentals);
 router.get('/rentals/:id/view', rentalsController.getRentalPage);
+router.get('/rentals/:id/watch', rentalsController.getRentalWatchPage);
 
 app.use('/', router);
 
