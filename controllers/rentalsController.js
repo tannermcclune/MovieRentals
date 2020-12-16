@@ -16,6 +16,19 @@ module.exports = {
             req.flash('error', 'There was an error getting the movie');
             res.redirect('/rentals');
         }
+    },
+
+    getRentalWatchPage: async (req, res, next) => {
+        let id = req.params.id;
+        try {
+            let transaction = await Transaction.findById(id);
+            res.locals.transaction = transaction;
+            console.log(transaction);
+            res.render('rentals/rentals-watch');
+        } catch (error) {
+            req.flash('error', 'There was an error getting the movie');
+            res.redirect('/rentals');
+        }
     }
 
 }

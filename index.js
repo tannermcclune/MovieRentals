@@ -166,6 +166,7 @@ router.get('/admin/transactions', transactionController.getAdminTransactions);
 router.get('/transactions', transactionController.getUserTransactions);
 router.get('/rentals', transactionController.getRentals);
 router.get('/rentals/:id/view', rentalsController.getRentalPage);
+router.get('/rentals/:id/watch', rentalsController.getRentalWatchPage);
 
 app.use('/', router);
 
