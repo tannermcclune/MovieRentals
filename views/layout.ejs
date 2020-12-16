@@ -29,9 +29,11 @@
 				<li class="menu">
 					<a href="/rentals">My Rentals</a>
 				</li>
+				<% if (currentUser.isAdmin) { %>
 				<li class="menu">
 					<a href="/api/showmovie">API</a>
 				</li>
+				<% } %>
 					<% if (currentUser.isAdmin) { %>
 					<li class="menu">
 						<a href="/admin/users">Users</a>
