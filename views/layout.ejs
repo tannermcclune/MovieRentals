@@ -20,6 +20,7 @@
 				<img src="/images/logo.png" width="40%">
 			  </a>
 			<ul class="nav navbar-nav float-right" style="float: right">
+				<% if (locals.currentUser !== undefined) { %>
 				<li class="selected">
 					<a href="/">Home</a>
 				</li>
@@ -29,23 +30,16 @@
 				<li class="menu">
 					<a href="/api/showmovie">API</a>
 				</li>
-				<% if (locals.currentUser !== undefined) { %>
 					<% if (currentUser.isAdmin) { %>
 					<li class="menu">
 						<a href="/admin/users">Users</a>
 					</li>
 					<% } %>
-				<% } %>
 
 				<li class="menu">
 					<a href="/movies">Movies</a>
 				</li>
 				<li>
-					<% if (!locals.currentUser) { %>
-						<li>
-							<a href="/login">Log In</a>
-						</li>
-					<% } else { %>
 						<li class="dropdown">
 							<a><%= locals.currentUser.username %></a>
 							<div class="dropdown-content">
@@ -57,6 +51,10 @@
 							  <a href="/admin/transactions">Transactions</a>
 							  <% } %>
 							  <a href="/users/logout">Log Out</a>
+						</li>
+					<% } else { %>
+						<li>
+							<a href="/login">Log In</a>
 						</li>
 					<% } %>
 			</ul>

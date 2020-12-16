@@ -133,13 +133,9 @@ router.post('/users/create', accountController.createNew);
 router.post('/users/login', accountController.userLogin);
 // router.get('/users/all', accountController.getAllUsers);
 router.get('/users/:id', accountController.getUser);
-
-// router.get('/users/:id/edit', accountController.editUser);
-// router.post(
-//   '/users/update',
-//   accountController.updateUser,
-//   accountController.redirect
-// );
+router.get('/users/:id/edit', accountController.editUser);
+router.post(
+  '/users/:id/update', accountController.updateUser);
 // router.post(
 //   '/users/:id/delete',
 //   accountController.deleteUser,
