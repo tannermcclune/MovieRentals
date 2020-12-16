@@ -126,6 +126,7 @@ router.get(
   apiMovieController.getAddForm
 );
 
+// Link for REST API for movies that are in stock at Blockbuster 2.0
 router.get("/api/export/movies", apiMovieController.getMovieRestAPI);
 
 
