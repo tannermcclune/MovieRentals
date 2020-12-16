@@ -1,6 +1,7 @@
 const { User, userVlidate } = require('../models/user');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+
 getUserParams = (body) => {
   return {
     username: body.userName,
@@ -84,7 +85,7 @@ module.exports = {
 
   getAllUsers: async (req, res, next) => {
     try {
-      let data = await User.find();
+      let data = await User.find({});
       res.locals.users = data;
       res.render('users/allUsers');
     } catch (error) {
@@ -92,7 +93,7 @@ module.exports = {
     }
   },
   getUser: async (req, res, next) => {
-    if (res.locals.currentUser.isAdmin) {
+    if (res.locals.currentUser && res.locals.currentUser.isAdmin) {
       try {
         let user = await User.findOne({ _id: req.params.id });
         res.locals.user = user;
@@ -101,7 +102,10 @@ module.exports = {
         res.send(error.message);
       }
     } else {
-      if (!res.locals.currentUser || res.locals.currentUser._id != req.params.id) {
+      if (!res.locals.currentUser) {
+        req.flash("error", "Log in to see this profile");
+        res.redirect(`/login`);
+      } else if (res.locals.currentUser._id != req.params.id) {
         req.flash("error", "You cannot access this user's information");
         res.redirect(`/users/${res.locals.currentUser._id}`);
       } else {

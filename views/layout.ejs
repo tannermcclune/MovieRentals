@@ -32,7 +32,7 @@
 				<% if (locals.currentUser !== undefined) { %>
 					<% if (currentUser.isAdmin) { %>
 					<li class="menu">
-						<a href="/users">Users</a>
+						<a href="/admin/users">Users</a>
 					</li>
 					<% } %>
 				<% } %>
@@ -53,7 +53,7 @@
 							  <a href="#">My Rentals</a>
 							  <a href="/transactions">Purchase History</a>
 							  <% if (currentUser.isAdmin) { %>
-							  <a href="">Edit Users</a>
+							  <a href="/admin/users">Edit Users</a>
 							  <a href="/admin/transactions">Transactions</a>
 							  <% } %>
 							  <a href="/users/logout">Log Out</a>

@@ -1,12 +1,35 @@
-<h1>Here's all of the users. You're welcome</h1>
+<div class='container'>
+<h1>All Users</h1>
+
 <table class="table">
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Data</th>
-    </tr>
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Is Admin</th>
+        </tr>
+    </thead>
+
+<tbody>
+<form method="POST" action="/admin/saveAdmin">
+<% let count = 0 %>
 <% users.forEach(user => {%>
-    <a href="/users/<%= movie._id %>"<li class="list-group-item"><%= user.firstname %> <%= user.lastname %></li></a>
+    <tr>
+        <td><a href="/users/<%= user._id %>"><%= user.firstname %> <%= user.lastname %></a></td>
+        <td><%= user.email %></td>
+        <td>
+            <input type="hidden" value="<%= user._id %>" name="users[<%= count %>][_id]">
+            <input type="checkbox" name="users[<%= count %>][isAdmin]"
+        <% if (user.isAdmin) { %>
+            checked
+        <% } %>>
+        </td>
+    </tr>
+    <% count++; %>
 <% }); %>
+</tbody>
 </table>
+<br><input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit changes">
+</form>
+</div>

@@ -38,7 +38,7 @@ router.use(layouts);
 router.use(express.static('public'));
 router.use(
   express.urlencoded({
-    extended: false,
+    extended: true,
   })
 );
 router.use(cookieParser('blockbuster_secret_code'));
@@ -156,6 +156,8 @@ router.get(
   adminController.isAdmin,
   adminController.getUser
 );
+router.post("/admin/saveAdmin", adminController.isAdmin, adminController.updateUsers);
+
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);
