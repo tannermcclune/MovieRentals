@@ -177,5 +177,7 @@ router.get('/rentals/:id/view', rentalsController.getRentalPage);
 router.get('/rentals/:id/watch', rentalsController.getRentalWatchPage);
 
 app.use('/', router);
-
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+app.set("port", process.env.PORT || 3000);
+const server = app.listen(app.get("port"), () => {
+  console.log(`Listening on http://localhost:${app.get("port")}`);
+})
