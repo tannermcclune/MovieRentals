@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-5">
+                <img src="<%= transaction.imageUrl %>" alt="" class="movie-img2">
+            </div>
+            <div class="col-md-7">
+                <h2><b><%= transaction.movieTitle %></b></h2>
+                <h4>Director: <%= transaction.movieDirector %></h4>
+                <p>Runtime: <%= transaction.runtime %> Minutes</p>
+                <p>Description:</p>
+                <p><%= transaction.description%></p>
+                <a
+                    href="/rentals/<%= transaction._id %>/watch"
+                    role="button"
+                    class="btn btn-warning"
+                    >Watch Movie</a>
+            </div>
+            
+        </div>
+    </div>
+</div>

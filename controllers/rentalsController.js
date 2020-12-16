@@ -5,8 +5,17 @@ const dateFormat = require("dateformat");
 
 module.exports = {
 
-    getRentalPage: (req, res) => {
-        
+    getRentalPage: async (req, res, next) => {
+        let id = req.params.id;
+        try {
+            let transaction = await Transaction.findById(id);
+            res.locals.transaction = transaction;
+            console.log(transaction);
+            res.render('rentals/rentals-page');
+        } catch (error) {
+            req.flash('error', 'There was an error getting the movie');
+            res.redirect('/rentals');
+        }
     }
 
 }
