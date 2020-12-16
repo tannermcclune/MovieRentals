@@ -73,11 +73,7 @@ router.get('/login', accountController.login);
 
 // MOVIES
 router.get('/movies', adminController.isLoggedIn, movieController.movies);
-<<<<<<< HEAD
-router.get('/movies/new', adminController.isLoggedIn, movieController.new);
-=======
 router.get('/movies/new', movieController.new);
->>>>>>> 1ca800679d3fbfe9463485292b1d27976ce4379f
 router.post(
   '/movies/create',
   movieController.createNew,
