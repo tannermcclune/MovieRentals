@@ -1,16 +1,16 @@
-<div>
-<p>This is the rentals page</p>
-<% if (rentals.length === 0) { %>
-    <h1>There are no rentals right now</h1>
-<% } else { %>
-    <table>
-    <% rentals.forEach(rental => { %>
-        <tr>
-            <td>
-                <% rental.movie.title %>
-            </td>
-        </tr>
-    <% }); %>
-    </table>
-<% } %>
-</div>
+
+    <div class="container">
+        <h1>My Rentals</h1>
+
+        <% transactions.forEach((transaction) => { %>
+        <div class="panel panel-default movie-card">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= transaction.movieTitle %></h3>
+            </div>
+            <div class="panel-body">
+              <img src="<%= transaction.imageUrl %>" alt="" class="movie-img">
+            </div>
+        </div>
+        <% }) %>
+          
+    </div>

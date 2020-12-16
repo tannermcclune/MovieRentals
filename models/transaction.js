@@ -24,7 +24,20 @@ const transSchema = new Schema(
 
         moviePrice: {
             type: String
+        },
+
+        genre: {
+            type: String,
+          },
+        
+        imageUrl: {
+            type: String,
+        },
+        
+        runtime: {
+            type: Number,
         }
+
     }
 )
 

@@ -18,18 +18,24 @@ module.exports = {
       const movieTitle = req.body.title,
             movieDirector = req.body.director,
             moviePrice = req.body.price,
-            userPurchased = req.user.username;
+            userPurchased = req.user.username,
+            genre = req.body.genre,
+            imageUrl = req.body.imageUrl,
+            runtime = req.body.runtime
 
       const newTrans = new Transaction({
           movieTitle,
           movieDirector,
           moviePrice,
-          userPurchased
+          userPurchased,
+          genre,
+          imageUrl,
+          runtime
       });
 
       Transaction.create(newTrans);
       console.log(newTrans);
-      res.send("it works");
+      res.render("transactions/purchase-success");
     },
 
     getAdminTransactions: (req, res, next) => {
@@ -50,6 +56,19 @@ module.exports = {
       .then(transactions => {
         res.locals.transactions = transactions;
         res.render("transactions/user-transactions", {dateFormat: dateFormat})
+      })
+      .catch(error => {
+        req.flash("error", "Couldn't get transactions");
+        console.log("Can't get transactions!")
+        next(error);
+      });
+    },
+
+    getRentals: (req, res, next) => {
+      Transaction.find({ userPurchased: req.user.username })
+      .then(transactions => {
+        res.locals.transactions = transactions;
+        res.render("rentals/rentals")
       })
       .catch(error => {
         req.flash("error", "Couldn't get transactions");

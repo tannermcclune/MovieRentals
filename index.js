@@ -69,7 +69,6 @@ router.use((req, res, next) => {
 router.get('/', homeController.index);
 router.get('/login', accountController.login);
 router.get('/genres', movieController.genres);
-router.get('/rentals', movieController.rentals);
 
 // MOVIES
 router.get('/movies', movieController.movies);
@@ -162,6 +161,7 @@ router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);
 router.get('/admin/transactions', transactionController.getAdminTransactions);
 router.get('/transactions', transactionController.getUserTransactions);
+router.get('/rentals', transactionController.getRentals);
 
 app.use('/', router);
 

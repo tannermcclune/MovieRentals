@@ -90,3 +90,16 @@
     background-color: #222;
     color: white;
   }
+
+  .movie-card{
+      width: 33%;
+  }
+
+  .movie-img{
+      width: 100%;
+  }
+
+  .success-card{
+      width: 25%;
+      text-align: center;
+  }
