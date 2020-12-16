@@ -3,33 +3,32 @@ const stripe = require('stripe')('sk_test_51HwKCmEh7sPHHFlBmTm7SQrKsec0tOPYmFgIp
 const Transaction = require('../models/transaction');
 const dateFormat = require("dateformat");
 
-const getTransParams = (req, body) => {
-    return{
-      movieTitle: body.title,
-      movieDirector: body.director,
-      moviePrice: body.price,
-      userPurchased: req.user.username
-    };
-};
-
 module.exports = {
 
     addTransaction: async (req, res) => {
       const movieTitle = req.body.title,
             movieDirector = req.body.director,
             moviePrice = req.body.price,
-            userPurchased = req.user.username;
+            userPurchased = req.user.username,
+            genre = req.body.genre,
+            imageUrl = req.body.imageUrl,
+            runtime = Math.round(req.body.runtime),
+            description = req.body.description
 
       const newTrans = new Transaction({
           movieTitle,
           movieDirector,
           moviePrice,
-          userPurchased
+          userPurchased,
+          genre,
+          imageUrl,
+          runtime,
+          description
       });
 
       Transaction.create(newTrans);
       console.log(newTrans);
-      res.send("it works");
+      res.render("transactions/purchase-success");
     },
 
     getAdminTransactions: (req, res, next) => {
@@ -50,6 +49,19 @@ module.exports = {
       .then(transactions => {
         res.locals.transactions = transactions;
         res.render("transactions/user-transactions", {dateFormat: dateFormat})
+      })
+      .catch(error => {
+        req.flash("error", "Couldn't get transactions");
+        console.log("Can't get transactions!")
+        next(error);
+      });
+    },
+
+    getRentals: (req, res, next) => {
+      Transaction.find({ userPurchased: req.user.username })
+      .then(transactions => {
+        res.locals.transactions = transactions;
+        res.render("rentals/rentals")
       })
       .catch(error => {
         req.flash("error", "Couldn't get transactions");
