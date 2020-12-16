@@ -8,10 +8,13 @@
   <p>Description: <%= movie.overview %></p>
   <p>Rate: <%= movie.vote_average%></p>
 
+  <% if (currentUser) { %> <% if (currentUser.isAdmin) { %>
   <a
     href="/api/newStockForm/<%= movie.id %>"
     role="button"
     class="btn btn-warning"
     >Add to Stock</a
   >
+
+  <% }} %>
 </div>

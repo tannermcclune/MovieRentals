@@ -63,6 +63,7 @@ passportConfig(passport);
 router.use((req, res, next) => {
   res.locals.flashMessages = req.flash();
   res.locals.currentUser = req.user;
+  console.log(req.user);
   next();
 });
 
@@ -70,10 +71,13 @@ router.use((req, res, next) => {
 router.get('/', homeController.index);
 router.get('/login', accountController.login);
 
-
 // MOVIES
 router.get('/movies', adminController.isLoggedIn, movieController.movies);
+<<<<<<< HEAD
 router.get('/movies/new', adminController.isLoggedIn, movieController.new);
+=======
+router.get('/movies/new', movieController.new);
+>>>>>>> 1ca800679d3fbfe9463485292b1d27976ce4379f
 router.post(
   '/movies/create',
   movieController.createNew,
@@ -133,8 +137,7 @@ router.get(
 );
 
 // Link for REST API for movies that are in stock at Blockbuster 2.0
-router.get("/api/export/movies", apiMovieController.getMovieRestAPI);
-
+router.get('/api/export/movies', apiMovieController.getMovieRestAPI);
 
 // USERS
 router.get('/users/create', accountController.create);
@@ -144,8 +147,7 @@ router.post('/users/login', accountController.userLogin);
 // router.get('/users/all', accountController.getAllUsers);
 router.get('/users/:id', accountController.getUser);
 router.get('/users/:id/edit', accountController.editUser);
-router.post(
-  '/users/:id/update', accountController.updateUser);
+router.post('/users/:id/update', accountController.updateUser);
 router.post(
   '/users/:id/delete',
   accountController.deleteUser,
@@ -163,7 +165,11 @@ router.get(
   adminController.isAdmin,
   adminController.getUser
 );
-router.post("/admin/saveAdmin", adminController.isAdmin, adminController.updateUsers);
+router.post(
+  '/admin/saveAdmin',
+  adminController.isAdmin,
+  adminController.updateUsers
+);
 
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
