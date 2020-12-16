@@ -70,10 +70,6 @@ module.exports = {
     try {
       let movie = await Movie.findById(id);
       res.locals.movie = movie;
-      let image = await (
-        await axios.get('https://dog.ceo/api/breeds/image/random')
-      ).data.message;
-      res.locals.image = image;
       console.log(movie);
       res.render('movies/singleMovie');
     } catch (error) {
