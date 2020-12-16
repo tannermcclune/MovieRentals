@@ -72,8 +72,8 @@ router.get('/login', accountController.login);
 
 
 // MOVIES
-router.get('/movies',adminController.isLoggedIn, movieController.movies);
-router.get('/movies/new', movieController.new);
+router.get('/movies', adminController.isLoggedIn, movieController.movies);
+router.get('/movies/new', adminController.isLoggedIn, movieController.new);
 router.post(
   '/movies/create',
   movieController.createNew,
@@ -168,7 +168,7 @@ router.post("/admin/saveAdmin", adminController.isAdmin, adminController.updateU
 // CHECKOUT ROUTING
 router.get('/movies/:id/checkout', movieController.getCheckout);
 router.post('/checkout', transactionController.addTransaction);
-router.get('/admin/transactions', transactionController.getAdminTransactions);
+router.get('/admin/transactions', adminController.isAdmin, transactionController.getAdminTransactions);
 router.get('/transactions', transactionController.getUserTransactions);
 router.get('/rentals', transactionController.getRentals);
 router.get('/rentals/:id/view', rentalsController.getRentalPage);
