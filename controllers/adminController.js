@@ -2,12 +2,20 @@ const { User, userVlidate } = require('../models/user');
 
 module.exports = {
     isAdmin: (req, res, next) => {
-        if (res.locals.currentUser.isAdmin) {
-            next();
+        if (!res.locals.currentUser || !res.locals.currentUser.isAdmin) {
+          req.flash("error", `You are not an administrator.`);
+          res.redirect("/login");
         } else {
-            req.flash("error", `You are not an administrator.`);
-            res.redirect("/");
+          next();
         }
+    },
+
+    isLoggedIn: (req, res, next) => {
+      if (!res.locals.currentUser) {
+        res.redirect("/login");
+      } else {
+        next();
+      }
     },
 
     getAllUsers: async (req, res, next) => {

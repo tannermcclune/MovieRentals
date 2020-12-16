@@ -69,10 +69,10 @@ router.use((req, res, next) => {
 // NEW ROUTES
 router.get('/', homeController.index);
 router.get('/login', accountController.login);
-router.get('/genres', movieController.genres);
+
 
 // MOVIES
-router.get('/movies', movieController.movies);
+router.get('/movies',adminController.isLoggedIn, movieController.movies);
 router.get('/movies/new', movieController.new);
 router.post(
   '/movies/create',
@@ -97,31 +97,37 @@ router.post('/movies/search', movieController.searchMovies);
 //API MOVIES
 router.get(
   '/api/showmovie',
+  adminController.isAdmin,
   apiMovieController.getApiMovie,
   apiMovieController.getMovie
 );
 router.get(
   '/api/movies/singleTrendingNow/:id',
+  adminController.isAdmin,
   apiMovieController.getApiMovie,
   apiMovieController.getSingleTrending
 );
 router.get(
   '/api/movies/singleTopRated/:id',
+  adminController.isAdmin,
   apiMovieController.getApiMovie,
   apiMovieController.getSingleTopRated
 );
 router.get(
   '/api/movies/singleAction/:id',
+  adminController.isAdmin,
   apiMovieController.getApiMovie,
   apiMovieController.getSingleAction
 );
 router.get(
   '/api/movies/singleComedy/:id',
+  adminController.isAdmin,
   apiMovieController.getApiMovie,
   apiMovieController.getSingleComedy
 );
 router.get(
   '/api/newStockForm/:id',
+  adminController.isAdmin,
   apiMovieController.getApiMovie,
   apiMovieController.getAddForm
 );
