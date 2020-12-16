@@ -29,12 +29,19 @@
 				<li class="menu">
 					<a href="/rentals">My Rentals</a>
 				</li>
+<<<<<<< HEAD
 				<% if (currentUser.isAdmin) { %>
 				<li class="menu">
 					<a href="/api/showmovie">API</a>
 				</li>
 				<% } %>
+=======
+				
+>>>>>>> ce78e33d305fe50a4ff05b962200cbc6f0fb4a2a
 					<% if (currentUser.isAdmin) { %>
+						<li class="menu">
+							<a href="/api/showmovie">API</a>
+						</li>
 					<li class="menu">
 						<a href="/admin/users">Users</a>
 					</li>
@@ -48,7 +55,6 @@
 							<a><%= locals.currentUser.username %></a>
 							<div class="dropdown-content">
 							  <a href="/users/<%= currentUser._id %>">Profile</a>
-							  <a href="#">My Rentals</a>
 							  <a href="/transactions">Purchase History</a>
 							  <% if (currentUser.isAdmin) { %>
 							  <a href="/admin/users">Edit Users</a>
