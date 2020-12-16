@@ -3,15 +3,6 @@ const stripe = require('stripe')('sk_test_51HwKCmEh7sPHHFlBmTm7SQrKsec0tOPYmFgIp
 const Transaction = require('../models/transaction');
 const dateFormat = require("dateformat");
 
-const getTransParams = (req, body) => {
-    return{
-      movieTitle: body.title,
-      movieDirector: body.director,
-      moviePrice: body.price,
-      userPurchased: req.user.username
-    };
-};
-
 module.exports = {
 
     addTransaction: async (req, res) => {
@@ -21,7 +12,8 @@ module.exports = {
             userPurchased = req.user.username,
             genre = req.body.genre,
             imageUrl = req.body.imageUrl,
-            runtime = req.body.runtime
+            runtime = Math.round(req.body.runtime),
+            description = req.body.description
 
       const newTrans = new Transaction({
           movieTitle,
@@ -30,7 +22,8 @@ module.exports = {
           userPurchased,
           genre,
           imageUrl,
-          runtime
+          runtime,
+          description
       });
 
       Transaction.create(newTrans);

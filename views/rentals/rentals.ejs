@@ -3,12 +3,22 @@
         <h1>My Rentals</h1>
 
         <% transactions.forEach((transaction) => { %>
-        <div class="panel panel-default movie-card">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= transaction.movieTitle %></h3>
-            </div>
+        <div class="panel panel-default">
             <div class="panel-body">
-              <img src="<%= transaction.imageUrl %>" alt="" class="movie-img">
+                <div class="col-md-3">
+                    <img src="<%= transaction.imageUrl %>" alt="" class="movie-img">
+                </div>
+                <div class="col-md-9">
+                    <h2><b><%= transaction.movieTitle %></b></h2>
+                    <h4>Director: <%= transaction.movieDirector %></h4>
+                    <p>Runtime: <%= transaction.runtime %> Minutes</p>
+                    <p>Description:</p>
+                    <p><%= transaction.description%></p>
+                    <form action="">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">View Movie</button>
+                    </form>
+                </div>
+                
             </div>
         </div>
         <% }) %>

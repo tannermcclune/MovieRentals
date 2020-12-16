@@ -13,6 +13,7 @@ const express = require('express'),
   accountController = require('./controllers/accountController'),
   adminController = require('./controllers/adminController'),
   apiMovieController = require('./controllers/apiMovieControllers'),
+  rentalsController = require('./controllers/rentalsControllers'),
   transactionController = require('./controllers/transactionController'),
   PORT = process.env.PORT || 3000,
   passportConfig = require('./config/auth'),
@@ -164,6 +165,7 @@ router.post('/checkout', transactionController.addTransaction);
 router.get('/admin/transactions', transactionController.getAdminTransactions);
 router.get('/transactions', transactionController.getUserTransactions);
 router.get('/rentals', transactionController.getRentals);
+router.get('/rentals/:id/view', rentalsController.getRentalPage);
 
 app.use('/', router);
 

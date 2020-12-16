@@ -36,6 +36,10 @@ const transSchema = new Schema(
         
         runtime: {
             type: Number,
+        },
+
+        description: {
+            type: String
         }
 
     }
