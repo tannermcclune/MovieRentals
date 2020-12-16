@@ -2,7 +2,8 @@
     <h1>Movies In Stock</h1>
     <ul class="list-group">
         <% movies.forEach(movie => { %>
-            <a href="/movies/<%= movie._id %>"<li class="list-group-item"><%= movie.title %></li></a>
+                    <a href="/movies/<%= movie._id %>"><img src="<%= movie.imageUrl %>" alt="" class="movie-img"></a>
         <% }) %>
     </ul>
 </div>
+

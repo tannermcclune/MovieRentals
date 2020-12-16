@@ -10,7 +10,6 @@ module.exports = {
         try {
             let transaction = await Transaction.findById(id);
             res.locals.transaction = transaction;
-            console.log(transaction);
             res.render('rentals/rentals-page');
         } catch (error) {
             req.flash('error', 'There was an error getting the movie');
