@@ -1,31 +1,4 @@
--- Movie Rentals --
+Capstone project for MIS 5050 (Advanvded Web Applications). Course focuses on the MVC architecture and uses Node.js, Express and MongoDB to build dynamic applications. Developement included project planning, design, development, and deployment of a web application. Our web application (Blockbuster2.0) is an application used to rent movies. Admins can add movies to the DB using an API, and users can add these movie to their own catalogs.
 
-- Landing Page
-
- - Client (Section)
-  |
-  - Sign In & [POST]
-  - Sign Up [POST]
-   |
-   - Client Home [GET]
-   - Movie Page [GET]
-   - Movie Check Out [POST]
-   |
-   - Timeline Page [GET]
-   - Friends Page [GET]
-   |
-   - Account [GET]
-    - My Movies [GET]
-    - Settings [POST]
-
- - Admin (Section)
-  - Sign In [POST]
-   |
-   - Dashboard [GET]
-   - Movie List [GET]
-    |
-    - Edit List [POST]
-   - Account List [GET]
-    |
-    - Edit Accounts [POST]
-   
+Live Deployment:
+https://arcane-waters-63629.herokuapp.com/
